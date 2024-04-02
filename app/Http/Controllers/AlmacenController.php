@@ -143,14 +143,12 @@ class AlmacenController extends Controller
 
         //$datos = request()->all();
         //return response()->json($datos);
-
-        //consulta verificadora
-       if ($request->hasFile('image')) {
-        //imagen vieja
         $old_imagen = $request->image_text;
-        //nueva imagen
         $file = $request->file('image');
         $fileName = time().'-'.$file->getClientOriginalName();
+        //consulta verificadora
+       if ($request->hasFile('image')) {
+
         //echo $fileName." "."Vieja: ". $old_imagen;
         $request->file('image')->storeAs('productos',$fileName,'public'); //cargar de forma publica
         //$request->file('file')->storeAs($id,$fileNam e); //cargar de forma privada
@@ -183,6 +181,7 @@ class AlmacenController extends Controller
         $producto->precio_compra = $request->precio_compra;
         $producto->precio_venta = $request->precio_venta;
         $producto->categoria_id = $request->id_categoria;
+        $producto->imagen = $fileName;
 
 
         $producto->save();

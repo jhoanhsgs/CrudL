@@ -36,6 +36,6 @@ class DatabaseSeeder extends Seeder
                     'password'=>Hash::make('123'),
                     ])->assignRole('usuario');
 
-
+                    $this->call([CategoriasSeeder::class]);
     }
 }

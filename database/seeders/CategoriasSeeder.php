@@ -16,14 +16,15 @@ class CategoriasSeeder extends Seeder
      */
     public function run()
     {
+
         Categoria::create([
-            'name'=> "",
+            'nombre'=> "Streaming",
         ]);
         Categoria::create([
-            'name'=> "Music",
+            'nombre'=> "Music",
         ]);
         Categoria::create([
-            'name'=> "Job",
+            'nombre'=> "job",
         ]);
     }
 }

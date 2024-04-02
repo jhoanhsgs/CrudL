@@ -46,7 +46,8 @@
                                             <td><center>{{$contador_producto++;}}</center></td>
                                             <td>{{$almacen->codigo}}</td>
                                             <td>
-                                                <img src="{{asset('storage/productos/'.$almacen->imagen)}}" width="50px" alt="">
+                                                {{ $almacen->imagen }}
+                                                <img src="{{url('storage/productos/'.$almacen->imagen)}}" width="90%" alt="">
                                             </td>
                                             <td>{{$almacen->nombre}}</td>
                                             <td>{{$almacen->stock}}</td>
