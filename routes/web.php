@@ -85,7 +85,18 @@ Route::get('/admin/almacen/{id}', [App\Http\Controllers\AlmacenController::class
 //vista editar
 Route::get('/admin/almacen/{id}/edit', [App\Http\Controllers\AlmacenController::class, 'edit'])->name('almacen.edit')->middleware('auth');
 //update
-Route::put('/admin/almacen/{id}', [App\Http\Controllers\AlmacenController::class, 'update'])->name('almacen.update')->middleware('auth');
+Route::put('/admin/almacen/{id} ', [App\Http\Controllers\AlmacenController::class, 'update'])->name('almacen.update')->middleware('auth');
+
+
+
+//proveedores
+
+//index
+Route::get('/admin/proveedores', [App\Http\Controllers\ProveedoresController::class, 'index'])->name('proveedores.index')->middleware('auth');
+//crear
+Route::post('/admin/proveedores/create', [App\Http\Controllers\ProveedoresController::class, 'store'])->name('proveedores.store')->middleware('auth');
+//actualizar
+Route::put('/admin/proveedores/update', [App\Http\Controllers\ProveedoresController::class, 'update'])->name('proveedores.update')->middleware('auth');
 
 
 

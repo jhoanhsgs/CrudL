@@ -44,9 +44,7 @@
                                             <td><center><?php echo e($contador_producto++); ?></center></td>
                                             <td><?php echo e($almacen->codigo); ?></td>
                                             <td>
-                                                <?php echo e($almacen->imagen); ?>
-
-                                                <img src="<?php echo e(url('storage/productos/'.$almacen->imagen)); ?>" width="90%" alt="">
+                                                <img src="<?php echo e(asset('storage/productos/'.$almacen->imagen)); ?>" width="50px" alt="">
                                             </td>
                                             <td><?php echo e($almacen->nombre); ?></td>
                                             <td><?php echo e($almacen->stock); ?></td>

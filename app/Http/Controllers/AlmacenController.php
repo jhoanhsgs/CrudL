@@ -79,8 +79,8 @@ class AlmacenController extends Controller
 
         $file = $request->file('image');
         $fileName = time().'-'.$file->getClientOriginalName();
-        $request->file('image')->storeAs('productos',$fileName,'public'); //cargar de forma publica
-        //$request->file('file')->storeAs($id,$fileName); //cargar de forma privada
+        //$request->file('image')->storeAs('productos',$fileName,'public'); //cargar de forma publica
+        $request->file('image')->storeAs('productos',$fileName); //cargar de forma privada
 
         $producto = new Almacen();
         $producto->codigo = $request->codigo;
@@ -150,13 +150,13 @@ class AlmacenController extends Controller
        if ($request->hasFile('image')) {
 
         //echo $fileName." "."Vieja: ". $old_imagen;
-        $request->file('image')->storeAs('productos',$fileName,'public'); //cargar de forma publica
-        //$request->file('file')->storeAs($id,$fileNam e); //cargar de forma privada
+        //$request->file('image')->storeAs('productos',$fileName,'public'); //cargar de forma publica
+        $request->file('image')->storeAs('productos', $fileName ); //cargar de forma privada
         //borrando la imagen vieja
         //Storage::delete('public/productos/' . $old_imagen);
         //mover imagen vieja a papeleria
-        $rutaProductos = 'public/productos/' . $old_imagen;
-        $rutaPapelera = 'public/productos/papelera/' . $old_imagen;
+        $rutaProductos = 'productos/' . $old_imagen;
+        $rutaPapelera = 'productos/papelera/' . $old_imagen;
         Storage::move($rutaProductos, $rutaPapelera);
        }else{
             //echo "no hay cambio de imagen";
