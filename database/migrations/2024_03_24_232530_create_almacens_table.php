@@ -37,11 +37,11 @@ class CreateAlmacensTable extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->foreign('categoria_id')
-            ->references('id')
-            ->on('categorias')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
+                $table->foreign('categoria_id')
+                ->references('id')
+                ->on('categorias')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
 
 
 

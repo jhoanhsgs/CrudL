@@ -99,6 +99,27 @@ Route::post('/admin/proveedores/create', [App\Http\Controllers\ProveedoresContro
 Route::put('/admin/proveedores/update', [App\Http\Controllers\ProveedoresController::class, 'update'])->name('proveedores.update')->middleware('auth');
 
 
+//Compras
+//index
+Route::get('/admin/compras', [App\Http\Controllers\CompraController::class, 'index'])->name('compras.index')->middleware('auth');
+//mostrar compras detalles
+Route::get('/admin/compras/{id}', [App\Http\Controllers\CompraController::class, 'show'])->name('compras.show')->middleware('auth');
+//create
+Route::get('/admin/create/compra', [App\Http\Controllers\CompraController::class, 'create'])->name('compras.create')->middleware('auth');
+
+
+//vista editar
+Route::get('/admin/compras/{id}/edit', [App\Http\Controllers\CompraController::class, 'edit'])->name('compras.edit')->middleware('auth');
+
+
+
+//cuentas
+//index
+Route::get('/admin/cuentas', [App\Http\Controllers\CuentaController::class, 'index'])->name('cuentas.index')->middleware('auth');
+//asignar_perfies
+Route::post('/admin/cuentas/asignar', [App\Http\Controllers\CuentaController::class, 'asignar_perfil'])->name('asignar.perfil')->middleware('auth');
 
 //publicas
 Route::get('/shop', [App\Http\Controllers\ShopController::class, 'index'])->name('index.shop');
+
+

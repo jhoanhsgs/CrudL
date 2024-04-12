@@ -17,5 +17,9 @@ class Almacen extends Model
         return $this->belongsTo(Categoria::class);
     }
 
+    public function compra(){
+        return $this->hasMany(Compra::class);
+    }
+
 
 }

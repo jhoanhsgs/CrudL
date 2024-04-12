@@ -144,10 +144,10 @@ class AlmacenController extends Controller
         //$datos = request()->all();
         //return response()->json($datos);
         $old_imagen = $request->image_text;
-        $file = $request->file('image');
-        $fileName = time().'-'.$file->getClientOriginalName();
         //consulta verificadora
-       if ($request->hasFile('image')) {
+        if ($request->hasFile('image')) {
+           $file = $request->file('image');
+           $fileName = time().'-'.$file->getClientOriginalName();
 
         //echo $fileName." "."Vieja: ". $old_imagen;
         //$request->file('image')->storeAs('productos',$fileName,'public'); //cargar de forma publica
@@ -159,7 +159,7 @@ class AlmacenController extends Controller
         $rutaPapelera = 'productos/papelera/' . $old_imagen;
         Storage::move($rutaProductos, $rutaPapelera);
        }else{
-            //echo "no hay cambio de imagen";
+            $fileName = $old_imagen;
        }
 
 

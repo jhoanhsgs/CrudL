@@ -181,7 +181,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
 
           {{-- Proveedores --}}
-          <li class="nav-item ">
+        <li class="nav-item ">
             <a href="#" class="nav-link active">
                 <i class="nav-icon fas fa-car"></i>
                 <p>
@@ -198,6 +198,36 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </li>
             </ul>
         </li>
+
+        {{-- compra --}}
+        <li class="nav-item ">
+            <a href="#" class="nav-link active">
+                <i class="nav-icon fas fa-cart-plus"></i>
+                <p>
+                    Compras
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="{{ URL('admin/compras') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Listado de compras</p>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        {{-- Cuentas --}}
+        <li class="nav-item menu">
+            <a href="{{url('/admin/cuentas')}}" class="nav-link active">
+              <i class="nav-icon fas"><i class="bi bi-folder-plus"></i></i>
+              <p>
+                Cuentas
+
+              </p>
+            </a>
+          </li>
+
 
           <!-- Authentication Links -->
         @guest
@@ -274,7 +304,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       Anything you want
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2022-2024 <a href="{{ URL('/') }}">Evoluciontv.live</a>.</strong> All rights reserved.
   </footer>
 </div>
 <!-- ./wrapper -->

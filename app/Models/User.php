@@ -51,4 +51,7 @@ class User extends Authenticatable
     public function almacen(){
         return $this->hasMany(Almacen::class);
     }
+    public function compra(){
+        return $this->hasMany(Compra::class);
+    }
 }
