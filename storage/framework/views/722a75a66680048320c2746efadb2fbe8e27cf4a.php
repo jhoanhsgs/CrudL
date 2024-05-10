@@ -41,6 +41,40 @@
             </a>
         </div>
     </div>
+
+    <div class="col-lg-3 col-6">
+        <div class="small-box bg-success">
+            <div class="inner">
+                <?php $contador_Comopras =0; ?>
+                <?php $__currentLoopData = $Comopras; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $carpeta): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php $contador_Comopras++; ?>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                <h3><?php echo e($contador_Comopras); ?></h3>
+                <p>Compras registradas</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-tags"></i>
+            </div>
+            <a   class="small-box-footer">
+                ,
+            </a>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-6">
+        <div class="small-box bg-primary">
+            <div class="inner">
+                <h3><?php echo e($stock_productos); ?></h3>
+                <p>Cuentas compradas</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-tags"></i>
+            </div>
+            <a   class="small-box-footer">
+                ,
+            </a>
+        </div>
+    </div>
 </div>
 <?php $__env->stopSection(); ?>
 

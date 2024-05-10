@@ -43,5 +43,39 @@
             </a>
         </div>
     </div>
+
+    <div class="col-lg-3 col-6">
+        <div class="small-box bg-success">
+            <div class="inner">
+                @php $contador_Comopras =0; @endphp
+                @foreach ($Comopras as $carpeta)
+                    @php $contador_Comopras++; @endphp
+                @endforeach
+                <h3>{{$contador_Comopras}}</h3>
+                <p>Compras registradas</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-tags"></i>
+            </div>
+            <a   class="small-box-footer">
+                ,
+            </a>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-6">
+        <div class="small-box bg-primary">
+            <div class="inner">
+                <h3>{{$stock_productos}}</h3>
+                <p>Cuentas compradas</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-tags"></i>
+            </div>
+            <a   class="small-box-footer">
+                ,
+            </a>
+        </div>
+    </div>
 </div>
 @endsection

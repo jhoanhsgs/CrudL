@@ -24,7 +24,7 @@
                         <i class="fa fa-search"></i>
                         Buscar producto
                     </button>
-                    <!-- modal para visualizar datos de los proveedor -->
+                    <!-- modal para visualizar datos de los productos -->
                     <div class="modal fade" id="modal-buscar_producto">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
@@ -535,28 +535,109 @@
                             </div>
                         </div>
 
+
                         <script>
-                            $('#btn_guardar_compra').click(function () {
-                                var id_producto = $('#id_producto').val().trim();
-                                var fecha_compra = $('#fecha_compra').val().trim();
-                                var nro_compra = $('#nro_compra').val().trim();
-                                var id_proveedor = $('#id_proveedor').val().trim();
-                                var comprobante = $('#comprobante').val().trim();
-                                var id_user = $('#id_user').val().trim();
-                                var precio_compra = $('#precio_compra_controlador').val().trim();
-                                var cantidad = $('#cantidad_compra').val().trim();
+                                // Esperar a que el DOM esté completamente cargado
+                                $(document).ready(function() {
+                                    // Obtener el input de cantidad_compra
+                                    var btnGuardarCompra = $('#btn_guardar_compra');
 
-                                // Verificar si algún campo está vacío
-                                if (id_producto === "" || fecha_compra === "" || nro_compra === "" || id_proveedor === "" || comprobante === "" || id_user === "" || precio_compra === "" || cantidad === "") {
-                                    // Mostrar mensaje de alerta
-                                    alert("Debe llenar todos los campos");
-                                    return; // Detener la ejecución si hay campos vacíos
-                                }
+                                    // Agregar un evento de escucha para el evento input
+                                    btnGuardarCompra.on('click', function() {
+                                        // Mostrar una alerta cuando se presiona una tecla dentro del input
+                                        //alert('Estamos presionando el btn guardar');
+                                        console.log('Botón Guardar Compra clickeado');
 
-                                // Todos los campos están completos, continuar con el proceso de guardado
-                                console.log("Datos de la compra completos. Enviar al backend para guardar.");
-                            });
-                        </script>
+                                    var id_producto = document.getElementById('id_producto').value.trim();
+                                    var fecha_compra = document.getElementById('fecha_compra').value.trim();
+                                    var nro_compra = document.getElementById('nro_compra').value.trim();
+                                    var id_proveedor = document.getElementById('id_proveedor').value.trim();
+                                    var comprobante = document.getElementById('comprobante').value.trim();
+                                    var id_user = document.getElementById('id_seccion').value.trim();
+                                    var precio_compra = document.getElementById('precio_compra_controlador').value.trim();
+                                    var cantidad = document.getElementById('cantidad_compra').value.trim();
+                                    var stock_total = document.getElementById('stock_total').value.trim();
+
+                                        alert(stock_total);
+                                    if (id_producto === '') {
+                                        alert('Debe selecionar un producto.');
+                                        $('#id_producto').focus();
+                                        return;
+                                    }
+                                    if (nro_compra === '') {
+                                        alert('Se vulnero el numero de compra, por favor refrescar la pagina');
+                                        $('#nro_compra').focus();
+                                        return;
+                                    }
+                                    if (fecha_compra === '') {
+                                        alert('Debe llenar el campo Fecha de la compra');
+                                        $('#fecha_compra').focus();
+                                        return;
+                                    }
+                                    if (id_proveedor === '') {
+                                        alert('Debe selecionar un proveedor.');
+                                        $('#id_proveedor').focus();
+                                        return;
+                                    }
+                                    if (comprobante === '') {
+                                        alert('Debe llenar el campo Comprobante.');
+                                        $('#comprobante').focus();
+                                        return;
+                                    }
+                                    if (id_user === '') {
+                                        alert('Se vulnero el usuario, por favor refrescar la pagina');
+                                        $('#id_seccion').focus();
+                                        return;
+                                    }
+                                    if (precio_compra === '') {
+                                        alert('Debe llenar el campo Cantidad.');
+                                        $('#cantidad_compra').focus();
+                                        return;
+                                    }
+                                    if (cantidad === '') {
+                                        alert('Debe llenar el campo cantidad de la compra.');
+                                        $('#cantidad_compra').focus();
+                                        return;
+                                    }
+
+                                    $.ajax({
+                                        url: '{{ url("admin/store/compras") }}',
+                                        method: 'get',
+                                        data:{
+                                            _token: '{{ csrf_token() }}',
+                                            id_producto: id_producto,
+                                            fecha_compra: fecha_compra,
+                                            nro_compra: nro_compra,
+                                            id_proveedor: id_proveedor,
+                                            comprobante: comprobante,
+                                            id_user: id_user,
+                                            precio_compra: precio_compra,
+                                            cantidad: cantidad,
+                                            stock_total: stock_total
+                                        },
+                                        success: function(response) {
+                                        // Manejar la respuesta del servidor
+                                        //console.log(response);
+                                        // Mostrar el mensaje y el icono usando SweetAlert
+                                        Swal.fire({
+                                                icon: response.icono,
+                                                title: response.mensaje
+                                            });
+
+                                        setTimeout(function() {
+                                            window.location.href = '{{ url("admin/compras") }}';
+                                        }, 1000); // 1000 milisegundos = 1 segundo
+                                        },
+                                        error: function(xhr, status, error) {
+                                            // Manejar errores de la solicitud
+                                            console.error(error);
+                                            alert('Ocurrió un error al guardar la compra.');
+                                        }
+                                    });
+
+                                    });
+                                });
+                            </script>
 
 
 

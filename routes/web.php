@@ -106,6 +106,8 @@ Route::get('/admin/compras', [App\Http\Controllers\CompraController::class, 'ind
 Route::get('/admin/compras/{id}', [App\Http\Controllers\CompraController::class, 'show'])->name('compras.show')->middleware('auth');
 //create
 Route::get('/admin/create/compra', [App\Http\Controllers\CompraController::class, 'create'])->name('compras.create')->middleware('auth');
+//crear
+Route::get('/admin/store/compras', [App\Http\Controllers\CompraController::class, 'store'])->name('compras.store')->middleware('auth');
 
 
 //vista editar
@@ -122,4 +124,11 @@ Route::post('/admin/cuentas/asignar', [App\Http\Controllers\CuentaController::cl
 //publicas
 Route::get('/shop', [App\Http\Controllers\ShopController::class, 'index'])->name('index.shop');
 
+Route::post('/shop/cart/add', [App\Http\Controllers\CartController::class, 'add'])->name('cart.add');
+Route::get('/vercart', [App\Http\Controllers\CartController::class, 'vercarrito'])->name('cart.ver');
+Route::get('/incrementarCart/{id}', [App\Http\Controllers\CartController::class, 'incrementar'])->name('cart.incrementar');
+Route::get('/decrementarCart/{id}', [App\Http\Controllers\CartController::class, 'decrementar'])->name('cart.decrementar');
+Route::get('/eliminaritemCart/{id}', [App\Http\Controllers\CartController::class, 'eliminaritem'])->name('cart.eliminar.item');
+Route::get('/eliminarCart', [App\Http\Controllers\CartController::class, 'eliminacart'])->name('cart.eliminar');
+Route::get('/confirmarCart', [App\Http\Controllers\CartController::class, 'confirmarCart'])->name('cart.confirmar');
 

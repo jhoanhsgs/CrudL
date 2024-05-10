@@ -27,6 +27,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <script src="https://cdn.rawgit.com/zenorocha/clipboard.js/v1.5.3/dist/clipboard.min.js"></script>
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <style>
     .dropdown-toggle{
        background: white;
@@ -64,6 +66,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <ul class="navbar-nav ml-auto">
 
 
+      <li class="nav-item">
+
+                <?php echo $__env->yieldContent('badges'); ?>
+
+      </li>
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
           <i class="fas fa-expand-arrows-alt"></i>
@@ -213,6 +220,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <a href="<?php echo e(URL('admin/compras')); ?>" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Listado de compras</p>
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="<?php echo e(route('compras.create')); ?>" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Creación de compra</p>
                     </a>
                 </li>
             </ul>

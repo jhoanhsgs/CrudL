@@ -6,6 +6,8 @@ use App\Models\Almacen;
 use App\Models\Compra;
 use App\Models\Proveedores;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class CompraController extends Controller
 {
@@ -48,7 +50,59 @@ class CompraController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $id_producto = $request->id_producto;
+        $nro_compra = $request->nro_compra;
+        $fecha_compra = $request->fecha_compra;
+        $id_proveedor  = $request->id_proveedor;
+        $comprobante = $request->comprobante;
+        $id_usuario  = $request->id_user;
+        $precio_compra = $request->precio_compra;
+        $cantidad = $request->cantidad;
+        $stock_total = $request->stock_total;
+
+        DB::beginTransaction();
+
+        try{
+            $compra = new Compra();
+            $compra->id_producto = $id_producto;
+            $compra->nro_compra = $nro_compra;
+            $compra->fecha_compra = $fecha_compra;
+            $compra->id_proveedor  = $id_proveedor;
+            $compra->comprobante = $comprobante;
+            $compra->id_usuario  = $id_usuario;
+            $compra->precio_compra = $precio_compra;
+            $compra->cantidad = $cantidad;
+            $compra->save();
+
+            //actualizar el stock
+            //$almacen = Almacen::find($stock_total);
+            Almacen::where('id', $id_producto)->update(['stock' => $stock_total]);
+           //$producto->stock
+
+           DB::commit();
+
+           // Crear un array para los mensajes
+        $mensaje = 'Se registró la compra de manera correcta';
+        $icono = 'success';
+        // Devolver los mensajes en formato JSON
+        return response()->json(['mensaje' => $mensaje, 'icono' => $icono]);
+        } catch (\Exception $e) {
+            // Revertir la transacción en caso de error
+        DB::rollback();
+
+        // Redireccionar con mensaje de error
+        $mensaje = 'error al enviar los datos';
+        $icono = 'error';
+        }
+
+
+
+
+
+
+
+
     }
 
     /**
